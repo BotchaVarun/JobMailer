@@ -11,9 +11,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 APIFY_TOKEN = os.getenv("APIFY_TOKEN")
-SENDER_EMAIL = os.getenv("SENDER_EMAIL", "")       # e.g., yourgmail@gmail.com
-SENDER_PASSWORD = os.getenv("SENDER_PASSWORD", "") # Your App Password (not your main password)
-RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL", SENDER_EMAIL)
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")
+RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+
+if not APIFY_TOKEN:
+    raise ValueError("CRITICAL ERROR: APIFY_TOKEN is not set in the environment variables or GitHub secrets!")
+if not SENDER_EMAIL or not SENDER_PASSWORD or not RECEIVER_EMAIL:
+    raise ValueError("CRITICAL ERROR: SENDER_EMAIL, SENDER_PASSWORD, or RECEIVER_EMAIL is not set in the environment variables or GitHub secrets!")
+
 SMTP_SERVER = os.getenv("SMTP_SERVER", "smtp.gmail.com")
 SMTP_PORT = int(os.getenv("SMTP_PORT", "587"))
 
