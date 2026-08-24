@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/trigger",
+      "schedule": "0 4,7,12 * * 2,3,4"
+    }
+  ]
+}
