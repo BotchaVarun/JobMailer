@@ -24,6 +24,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
+      - name: Debug Environment
+        run: |
+          echo "=== Current Directory ==="
+          pwd
+          ls -la
+          echo "=== Python Version ==="
+          python --version
+          echo "=== Pip List ==="
+          python -m pip list
+
       - name: Run Scraper and Send Email
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
